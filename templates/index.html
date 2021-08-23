@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TentaCapture</title>
+	<link rel="shortcut icon" href="{{url_for('static',filename='icon.ico')}}">
+
+	
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<style>
+		body
+		{
+			background: black;
+			
+		}
+
+		img
+		{
+
+		}
+
+
+		@media screen and (max-width: 767px)
+		{
+			body
+			{
+				background: black;
+				margin: 0 auto;
+				text-align: center;
+				
+			}
+
+			#main
+			{
+				width: 400px;
+				margin: 0 auto;
+				text-align: center;
+			}
+
+
+
+
+		}
+
+
+	</style>
+</head>
+<body onkeypress="keypress(); return false;" onkeydown="keydown()" >
+
+
+	<img id="video" style="box-shadow: 5px 5px 5px white;" src="/video_feed" onmousedown="mousePos(event)" oncontextmenu="return false;"  onmousewheel="mousewheel(this); return false;">
+	
+
+
+
+</body>
+
+
+<script>
+
+
+	function mousewheel(){
+
+	    var x = event.pageX;
+
+	    var y = event.pageY;
+
+
+
+		if(event.wheelDelta === -120){
+		fetch("/wheel?x="+x+"&y="+y+"&wheel="+'down');
+		} else {
+		fetch("/wheel?x="+x+"&y="+y+"&wheel="+'up');
+		}
+	}
+
+
+    
+    function keypress(){
+
+        var keycode = event.keyCode;
+
+        fetch("/key?key="+String.fromCharCode(keycode));
+
+    }
+
+
+    function keydown(){
+        
+        var keycode = event.keyCode;
+
+
+        if(keycode == '8')
+            fetch("/key?key="+'backspace');
+
+
+        if(keycode == '13')
+            fetch("/key?key="+'enter');
+
+
+        if(keycode == '16')
+            fetch("/key?key="+'shift');
+
+
+        //if(keycode == '17')
+        //    fetch("/key?key="+'ctrl');
+
+
+        if(keycode == '21')
+            fetch("/key?key="+'hangul');
+
+
+        if(keycode == '27')
+            fetch("/key?key="+'esc');
+
+
+        if(keycode == '32')
+            fetch("/key?key="+'space');
+
+
+        if(keycode == '33')
+            fetch("/key?key="+'pageup');
+
+
+        if(keycode == '34')
+            fetch("/key?key="+'pagedown');
+        	
+
+        if(keycode == '35')
+            fetch("/key?key="+'end');
+
+
+        if(keycode == '36')
+            fetch("/key?key="+'home');
+
+
+        if(keycode == '37')
+            fetch("/key?key="+'left');
+
+
+
+        if(keycode == '38')
+            fetch("/key?key="+'up');
+
+
+
+        if(keycode == '39')
+            fetch("/key?key="+'right');
+
+
+        if(keycode == '40')
+            fetch("/key?key="+'down');
+
+
+        if(keycode == '91')
+            fetch("/key?key="+'win');
+     	
+
+
+        if(keycode == '112')
+            fetch("/key?key="+'f1');
+
+        if(keycode == '113')
+            fetch("/key?key="+'f2');
+
+        if(keycode == '114')
+            fetch("/key?key="+'f3');
+
+        if(keycode == '115')
+            fetch("/key?key="+'f4');
+
+        if(keycode == '116')
+            fetch("/key?key="+'f5');
+
+        if(keycode == '117')
+            fetch("/key?key="+'f6');
+
+        if(keycode == '118')
+            fetch("/key?key="+'f7');
+
+        if(keycode == '119')
+            fetch("/key?key="+'f8');
+
+        if(keycode == '120')
+            fetch("/key?key="+'f9');
+
+        if(keycode == '121')
+            fetch("/key?key="+'f10');
+
+        if(keycode == '122')
+            fetch("/key?key="+'f11');
+
+        if(keycode == '123')
+            fetch("/key?key="+'f12');
+
+    }
+
+	function mousePos(event) {
+
+		if(event.button == 0)
+			var button = 'left';
+
+		if(event.button != 0)
+			var button = 'right';
+
+	    var x = event.pageX;
+
+	    var y = event.pageY;
+
+
+
+	    fetch("/pos?mouse=down&x="+x+"&y="+y+'&button='+button);
+
+
+
+	    ondragstart = function() {
+		  return false;
+		};
+
+	    onmouseup = function(event){
+
+				    var x = event.pageX;
+
+				    var y = event.pageY;
+
+	    	console.log('놨음'+x+" "+y);
+
+
+	    fetch("/pos?mouse=up&x="+x+"&y="+y+'&button='+button);
+
+	    }
+
+	}
+
+</script>
+
+
+</html>

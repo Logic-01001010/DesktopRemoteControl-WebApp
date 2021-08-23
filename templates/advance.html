@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TentaCapture advance</title>
+	<link rel="shortcut icon" href="{{url_for('static',filename='icon.ico')}}">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<style>
+		body
+		{
+			background: black;
+		}
+
+
+		#main
+		{
+			margin: 0 auto;
+			width: 720px;
+			height: 500px;
+
+			overflow: scroll;
+
+			text-align: center;
+		}
+
+		#console form
+		{
+			text-align: center;
+			margin-top: 30px;
+		}
+
+		input
+		{
+			width: 720px;
+		}
+
+
+
+
+
+		@media screen and (max-width: 767px)
+		{
+			body{
+				background: black;
+				}
+
+				#main
+				{
+					margin: 0 auto;
+					width: 400px;
+					height: 600px;
+
+					overflow: scroll;
+
+					text-align: center;
+				}
+
+				#console form
+				{
+				text-align: center;
+				margin-top: 0px;
+				}
+
+				input
+				{
+					width: 400px;
+				}
+			
+		}
+
+
+
+	</style>
+</head>
+<body>
+
+	<a href="/?id=deus" style="color: white;">뒤로가기</a>
+
+	<div id="main">
+
+		<p id="output" style="color: white; text-align: left;">
+			
+		</p>
+
+
+	</div>
+
+	<div id="console">
+		<form method="POST">
+			<input type="input" name="submit_text">
+		</form>
+	</div>
+
+</body>
+
+	<script>
+		var test = document.getElementById('output');
+		test.innerHTML="{{CMD_OUTPUT}}".replace(/\n/g, '<br/>');;
+	</script>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+
+<body onkeypress="keypress()" onkeydown="keydown()" >
+ 
+
+
+<script>
+    
+    function keypress(){
+
+        var keycode = event.keyCode;
+
+        fetch("/key?key="+String.fromCharCode(keycode));
+
+    }
+
+
+    function keydown(){
+        
+        var keycode = event.keyCode;
+
+
+        if(keycode == '8')
+            fetch("/key?key="+'backspace');
+
+
+        if(keycode == '13')
+            fetch("/key?key="+'enter');
+
+
+        if(keycode == '16')
+            fetch("/key?key="+'shift');
+
+
+        if(keycode == '17')
+            fetch("/key?key="+'ctrl');
+
+
+        if(keycode == '32')
+            fetch("/key?key="+'space');
+
+        
+    }
+
+
+
+    
+
+
+</script>
+    
+</body>
+
+
+</html>
